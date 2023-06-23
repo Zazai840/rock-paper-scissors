@@ -24,7 +24,20 @@
             
             
         }
-console.log(getComputerChoice())
+        let playerSelection;
+        let computerSelection;
+     
+        function playRound(playerSelection,computerSelection){
+            playerSelection = prompt('Rock, paper or scissors?');
+            playerSelection = playerSelection.toLowerCase();
+            computerSelection = getComputerChoice();
+
+            if (computerSelection === playerSelection){
+                return 'Tie'
+            }
+
+        }
+
 
     </script>
     
