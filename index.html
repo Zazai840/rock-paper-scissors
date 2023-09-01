@@ -9,6 +9,9 @@
 <body>
     <div class="container">
         <div class="result"></div> 
+        <div class="score"></div>
+        <div class="final_result"></div>
+        
 
     </div>
 
@@ -46,19 +49,49 @@
        
     }
 
+    const finalResult = document.querySelector('.final_result')
+    let computerScore = 0;
+    let playerScore = 0;
+    function reset(){
+        score.innerText = '';
+        computerScore = 0;
+        playerScore = 0;
+        score = 0
+        divResult = ''
+    }
     function playRound(playerSelection, computerSelection){
+        
         let result = checkWinner(playerSelection, computerSelection);
         divResult = document.querySelector('.result')
         if (result === 'player'){
-            divResult.innerText = `You win! ${playerSelection} beats ${computerSelection}`
+            divResult.innerText = `You win! ${playerSelection} beats ${computerSelection}`;
+            playerScore++;
 
         }
         else if (result === 'tie'){
             divResult.innerText = 'It\'s a tie'
         }
         else {
-            divResult.innerText = `You lose! ${computerSelection} beats ${playerSelection}`
+            divResult.innerText = `You lose! ${computerSelection} beats ${playerSelection}`;
+            computerScore++;
+
         }
+
+        if (computerScore === 5){
+            finalResult.innerText = 'You have lost'
+        }
+        else if (playerScore === 5){
+            finalResult.innerText = 'You have won'
+        }
+
+        if (computerScore === 5 || playerScore === 5){
+            return;
+        }
+
+        const score = document.querySelector('.score');
+        score.innerText = `Computer: ${computerScore} Player: ${playerScore}`;
+        container.appendChild(score);
+        
     }
     
 
@@ -74,7 +107,12 @@
         container.appendChild(paperBtn);
         container.appendChild(scissorsBtn);
         
-        rockBtn.addEventListener('click', () => {
+        
+        
+      
+        
+
+         rockBtn.addEventListener('click', () => {
             computerSelection = getComputerChoice()
             playerSelection = 'rock'
             playRound(playerSelection, computerSelection)
@@ -91,10 +129,10 @@
             playerSelection = 'scissors';
             playRound(playerSelection, computerSelection)
         })
-
-
-
         
+
+ 
+
 
     
 
